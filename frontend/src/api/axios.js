@@ -5,7 +5,7 @@ const ENV_API_BASE_URL =
 
 const FALLBACK_BACKEND_ORIGIN =
   typeof window !== 'undefined'
-    ? `${window.location.protocol}//${window.location.hostname}:3000`
+    ? window.location.origin
     : 'http://localhost:3000';
 
 export const BACKEND_ORIGIN = (ENV_API_BASE_URL || FALLBACK_BACKEND_ORIGIN).replace(/\/+$/, '');
