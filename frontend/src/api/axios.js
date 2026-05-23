@@ -1,6 +1,14 @@
 import axios from 'axios';
 
-export const BACKEND_ORIGIN = 'http://localhost:3000';
+const ENV_API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || '';
+
+const FALLBACK_BACKEND_ORIGIN =
+  typeof window !== 'undefined'
+    ? `${window.location.protocol}//${window.location.hostname}:3000`
+    : 'http://localhost:3000';
+
+export const BACKEND_ORIGIN = (ENV_API_BASE_URL || FALLBACK_BACKEND_ORIGIN).replace(/\/+$/, '');
 export const API_BASE_URL = BACKEND_ORIGIN;
 
 export function resolveBackendFileUrl(filePath) {
